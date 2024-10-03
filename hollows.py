@@ -66,8 +66,8 @@ class SpookyHollow(Hollow):
         Re-arranges the treasures in the hollow from a list to a new
         data structure that is better suited for the get_optimal_treasure method.
 
-        You cannot use a sorting algorithm within this method or approach
-        marks will be deducted.
+        The new treasures data structure can't be an ArrayR or list variant (LinkedList, python list, sorted list, ...).
+        No lists! Breaching this will count as a major error and lose up to 100% of the marks of the task!
 
         Returns:
             None - This method should update the treasures attribute of the hollow
@@ -127,6 +127,9 @@ class MysticalHollow(Hollow):
         """
         Re-arranges the treasures in the hollow from a list to a new
         data structure that is better suited for the get_optimal_treasure method.
+
+        The new treasures data structure can't be an ArrayR or list variant (LinkedList, python list, sorted list, ...).
+        No lists! Breaching this will count as a major error and lose up to 100% of the marks of the task!
 
         Returns:
             None - This method should update the treasures attribute of the hollow
