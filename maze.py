@@ -238,7 +238,7 @@ class Maze:
         start: Position = self.start_position
         raise NotImplementedError
 
-    def take_treasures(self, path: List[MazeCell], backpack_capacity: int) -> List[Treasure]:
+    def take_treasures(self, path: List[MazeCell], backpack_capacity: int) -> List[Treasure] | None:
         """
         You must take the treasures in the order they appear in the path selecting treasures
         that have the highest value / weight ratio.
@@ -255,6 +255,7 @@ class Maze:
 
         Returns:
             List[Treasure] - List of the most optimal treasures.
+            None - If there are no treasures to take.
 
         Complexity:
             Best Case Complexity: TODO
