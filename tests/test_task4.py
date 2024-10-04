@@ -44,8 +44,7 @@ class TestTask4(TestCase):
 
             # Check if we can move to the next step
             for direction in Directions:
-                next_position: Position = Position(
-                    step.row + Maze.directions[direction][0], step.col + Maze.directions[direction][1])
+                next_position: Position = Position(step.row + Maze.directions[direction][0], step.col + Maze.directions[direction][1])
                 if next_position == next_step:
                     break
             else:
@@ -58,8 +57,7 @@ class TestTask4(TestCase):
         student_result: List[Position] = maze.quick_escape(40)
         self.assertIsNotNone(student_result, "Expected a path to be returned")
         self.validate_path(maze, student_result)
-        self.assertEqual(len(student_result), 2,
-                         "Expected the path to be of length 2 (the exit is right next to the start)")
+        self.assertEqual(len(student_result), 2, "Expected the path to be of length 2 (the exit is right next to the start)")
 
     @number("4.2")
     @visibility(visibility.VISIBILITY_HIDDEN)

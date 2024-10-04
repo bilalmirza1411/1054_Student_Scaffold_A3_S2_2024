@@ -82,7 +82,5 @@ class TestSetup(TestCase):
 
         """
         self.assertTrue(os.path.exists("mazes"), "/mazes directory does not exist")
-        self.assertTrue(os.path.exists("mazes/sample.txt"),
-                        "/mazes/sample.txt does not exist please see the testcase for more information.")
-        self.assertTrue(os.path.exists("mazes/sample2.txt"),
-                        "/mazes/sample2.txt does not exist please see the testcase for more information.")
+        self.assertTrue(os.path.exists("mazes/sample.txt"), "/mazes/sample.txt does not exist please see the testcase for more information.")
+        self.assertTrue(os.path.exists("mazes/sample2.txt"), "/mazes/sample2.txt does not exist please see the testcase for more information.")

@@ -44,12 +44,10 @@ class TestTask3(TestCase):
 
         # Check final position is an exit
         fp: Position = path[len(path) - 1]  # Final position
-        self.assertTrue(fp in maze.end_positions, f"Expected the final position to be an exit got {
-                        fp} ({maze.grid[fp.row][fp.col]})")
+        self.assertTrue(fp in maze.end_positions, f"Expected the final position to be an exit got {fp} ({maze.grid[fp.row][fp.col]})")
 
         # Check initial position is a start
-        self.assertEqual(path[0], maze.start_position, f"Expected the initial position to be the start position got {
-                         path[0]}, instead of {maze.start_position}")
+        self.assertEqual(path[0], maze.start_position, f"Expected the initial position to be the start position got {path[0]}, instead of {maze.start_position}")
 
         # check if all steps are valid
         valid_steps: List[bool] = list(map(valid_step, path))
@@ -105,8 +103,7 @@ class TestTask3(TestCase):
         def __eq__(self, value: object) -> bool:
             return isinstance(value, Treasure) and value.value == self.value and value.weight == self.weight
         """
-        self.assertEqual(Treasure(1008, 1008), Treasure(1008, 1008),
-                         "Treasure equality failed you need to use the __eq__ method provided in the scaffold.")
+        self.assertEqual(Treasure(1008, 1008), Treasure(1008, 1008), "Treasure equality failed you need to use the __eq__ method provided in the scaffold.")
 
     @number("3.1")
     @visibility(visibility.VISIBILITY_SHOW)
@@ -130,8 +127,7 @@ class TestTask3(TestCase):
             for cell in row:
                 if cell.tile != " ":
                     continue
-                self.assertTrue(cell.visited, f"Expected all cells to be visited, found {
-                                cell} unvisited (position: {cell.position})")
+                self.assertTrue(cell.visited, f"Expected all cells to be visited, found {cell} unvisited (position: {cell.position})")
 
     @number("3.4")
     @visibility(visibility.VISIBILITY_SHOW)
@@ -155,8 +151,7 @@ class TestTask3(TestCase):
         # Testing a variety of staminas in case you've done something silly
         for sta in [0, 50, 100]:
             treasures: List[Treasure] | None = self.maze.take_treasures(path, sta)
-            self.assertEqual(student_result, treasures,
-                             f"Expected no treasures to be taken instead got {student_result}")
+            self.assertEqual(student_result, treasures, f"Expected no treasures to be taken instead got {student_result}")
 
     @number("3.5")
     @visibility(visibility.VISIBILITY_SHOW)
@@ -176,19 +171,16 @@ class TestTask3(TestCase):
         self.assertEqual(student_result, None, f"Expected no treasures to be taken instead got {student_result}")
         # constrained by stamina
         student_result: List[Treasure] | None = self.maze.take_treasures(path, 50)
-        self.assertEqual(student_result, [Treasure(
-            45, 4)], f"To take just one treasure from the first spooky hollow instead got: {student_result}")
+        self.assertEqual(student_result, [Treasure(45, 4)], f"To take just one treasure from the first spooky hollow instead got: {student_result}")
         # Refill the hollows
         self.force_hollows(treasures)
         student_result: List[Treasure] | None = self.maze.take_treasures(path, 4 + 76 + 70)
-        self.assertEqual(student_result, [Treasure(45, 4), Treasure(43, 76), Treasure(
-            73, 70)], f"Expected all treasures to be taken instead got {student_result}")
+        self.assertEqual(student_result, [Treasure(45, 4), Treasure(43, 76), Treasure(73, 70)], f"Expected all treasures to be taken instead got {student_result}")
 
         # Refill the hollows
         self.force_hollows(treasures)
         student_result: List[Treasure] | None = self.maze.take_treasures(path,  4 + 76 + 70 - 1)
-        self.assertEqual(student_result, [Treasure(45, 4), Treasure(43, 76)],
-                         f"We expected to take the first two treasures instead got {student_result}")
+        self.assertEqual(student_result, [Treasure(45, 4), Treasure(43, 76)], f"We expected to take the first two treasures instead got {student_result}")
 
     @number("3.6")
     @visibility(visibility.VISIBILITY_SHOW)
@@ -261,6 +253,5 @@ class TestTask3(TestCase):
         self.update_hollow(mystic_hollow, mystic_1)
 
         student_result: List[Treasure] | None = self.maze.take_treasures(path, 1008)
-        expected: List[Treasure] = [Treasure(51, 6), Treasure(96, 13), Treasure(
-            84, 14), Treasure(87, 23), Treasure(70, 19), Treasure(97, 30)]
+        expected: List[Treasure] = [Treasure(51, 6), Treasure(96, 13), Treasure(84, 14), Treasure(87, 23), Treasure(70, 19), Treasure(97, 30)]
         self.assertEqual(student_result, expected, f"Incorrect treasures taken {student_result}, expected {expected}")

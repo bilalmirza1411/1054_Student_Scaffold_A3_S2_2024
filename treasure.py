@@ -4,6 +4,7 @@ from config import TreasureConfig
 from random_gen import RandomGen
 from typing import List
 
+
 class Treasure:
     def __init__(self, value: int, weight: int) -> None:
         """

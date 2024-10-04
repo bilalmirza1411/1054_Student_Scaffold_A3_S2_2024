@@ -18,24 +18,18 @@ class TestTask2(TestCase):
         Hollow.gen_treasures = treasure_gen
 
         spooky_hollow: SpookyHollow = SpookyHollow()
-        self.assertIsNone(spooky_hollow.get_optimal_treasure(
-            2), "Spooky hollow: Expected None as all the treasures are greater than backpack capacity")
+        self.assertIsNone(spooky_hollow.get_optimal_treasure(2), "Spooky hollow: Expected None as all the treasures are greater than backpack capacity")
 
         mystical_hollow: MysticalHollow = MysticalHollow()
         current_treasure: Treasure | None = mystical_hollow.get_optimal_treasure(2)
-        self.assertIsNone(current_treasure,
-                          "Mystical hollow: Expected None as all the treasures are greater than backpack capacity")
+        self.assertIsNone(current_treasure, "Mystical hollow: Expected None as all the treasures are greater than backpack capacity")
         current_treasure = mystical_hollow.get_optimal_treasure(100)
-        self.assertIsNotNone(
-            current_treasure, "Mystical hollow: There should be a treasure available for a backpack capacity of 100")
+        self.assertIsNotNone(current_treasure, "Mystical hollow: There should be a treasure available for a backpack capacity of 100")
         self.assertEqual(type(current_treasure), Treasure, "Mystical hollow: Expected a treasure object")
-        self.assertEqual(current_treasure, treasures[-1],
-                         "Mystical hollow: Expected the last treasure as the optimal treasure")
+        self.assertEqual(current_treasure, treasures[-1], "Mystical hollow: Expected the last treasure as the optimal treasure")
         current_treasure = spooky_hollow.get_optimal_treasure(100)
-        self.assertIsNotNone(
-            current_treasure, "Spooky hollow: There should be a treasure available for backpack capacity 100")
-        self.assertEqual(
-            current_treasure, treasures[-1], f"Spooky hollow: There was a better treasure available for backpack capacity 100")
+        self.assertIsNotNone(current_treasure, "Spooky hollow: There should be a treasure available for backpack capacity 100")
+        self.assertEqual(current_treasure, treasures[-1], f"Spooky hollow: There was a better treasure available for backpack capacity 100")
 
     @number("2.2")
     @visibility(visibility.VISIBILITY_SHOW)
@@ -46,8 +40,7 @@ class TestTask2(TestCase):
         Hollow.gen_treasures = treasure_gen
 
         spooky_hollow: SpookyHollow = SpookyHollow()
-        self.assertEqual(len(spooky_hollow), len(treasures), f"Expected {len(
-            treasures)} treasures after restructuring your hollow you have {len(spooky_hollow)} treasures")
+        self.assertEqual(len(spooky_hollow), len(treasures), f"Expected {len(treasures)} treasures after restructuring your hollow you have {len(spooky_hollow)} treasures")
 
         results: List[Treasure] = []
         for n in range(num_treasures-1):
@@ -59,8 +52,7 @@ class TestTask2(TestCase):
         self.assertEqual(len(spooky_hollow), 0, "Expected all treasures to be removed from the hollow")
         for idx, student_result in enumerate(results):
             expected: Treasure = treasures[-(idx+1)]
-            self.assertEqual(student_result, expected, f"Issue with treasure #{
-                             idx + 1}:\nExpected {expected} but got {student_result}, it seems you have removed the wrong treasure")
+            self.assertEqual(student_result, expected, f"Issue with treasure #{idx + 1}:\nExpected {expected} but got {student_result}, it seems you have removed the wrong treasure")
 
     @number("2.3")
     @visibility(visibility.VISIBILITY_SHOW)
@@ -92,10 +84,8 @@ class TestTask2(TestCase):
         mystical_hollow: MysticalHollow = MysticalHollow()
         spooky_hollow.get_optimal_treasure(100)
         for _ in range(10):
-            self.assertIsNone(spooky_hollow.get_optimal_treasure(
-                0), "Expected None as the only treasures are heavier than provided backpack capacity")
-            self.assertIsNone(spooky_hollow.get_optimal_treasure(
-                0), "Expected None as the only treasures are heavier than provided backpack capacity")
+            self.assertIsNone(spooky_hollow.get_optimal_treasure(0), "Expected None as the only treasures are heavier than provided backpack capacity")
+            self.assertIsNone(spooky_hollow.get_optimal_treasure(0), "Expected None as the only treasures are heavier than provided backpack capacity")
 
         mystical_hollow.get_optimal_treasure(100)
         for _ in range(10):
