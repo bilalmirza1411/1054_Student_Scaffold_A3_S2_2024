@@ -3,10 +3,15 @@ from __future__ import annotations
 from typing import List, Tuple, TypeVar
 
 from data_structures.bst import BinarySearchTree
-
+from algorithms import mergesort
 K = TypeVar('K')
 I = TypeVar('I')
-
+class TreeNode:
+    def __init__(self, key: K, item: I):
+        self.key = key
+        self.item = item
+        self.left = None
+        self.right = None
 
 class BetterBST(BinarySearchTree[K, I]):
     def __init__(self, elements: List[Tuple[K, I]]) -> None:
@@ -25,8 +30,8 @@ class BetterBST(BinarySearchTree[K, I]):
             elements(List[tuple[K, I]]): The elements to be inserted into the tree.
 
         Complexity:
-            Best Case Complexity: TODO
-            Worst Case Complexity: TODO
+            Best Case Complexity: O(nlogn), where n is the number of elements in the input / the final number of nodes in the tree.
+            Worst Case Complexity: O(nlogn)
         """
         super().__init__()
         new_elements: List[Tuple[K, I]] = self.__sort_elements(elements)
@@ -45,10 +50,11 @@ class BetterBST(BinarySearchTree[K, I]):
             list(Tuple[K, I]]) - elements after being sorted.
 
         Complexity:
-            Best Case Complexity: TODO
-            Worst Case Complexity: TODO
+            Best Case Complexity: O(nlogn), where n is the number of elements in the input / the final number of nodes in the tree.
+            Worst Case Complexity: O(nlogn), where n is the number of elements in the input / the final number of nodes in the tree.
         """
-        raise NotImplementedError
+        sorted_elements = mergesort(elements, lambda x: x[0])
+        return [item for x, item in sorted_elements]
 
     def __build_balanced_tree(self, elements: List[Tuple[K, I]]) -> None:
         """
@@ -74,4 +80,18 @@ class BetterBST(BinarySearchTree[K, I]):
             Worst Case Complexity: O(n * log(n))
             where n is the number of elements in the list.
         """
-        raise NotImplementedError
+        if not elements:
+            return None
+        
+        # Find the middle element to ensure balance
+        mid_index = len(elements) // 2
+        mid_element = elements[mid_index]
+        
+        # Create a new tree node with the middle element
+        node = TreeNode(mid_element[0], mid_element[1])
+        
+        # Recursively build the left and right subtrees
+        node.left = self.__build_tree_recursive(elements[:mid_index])
+        node.right = self.__build_tree_recursive(elements[mid_index + 1:])
+        
+        return node
